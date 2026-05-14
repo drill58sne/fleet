@@ -41,6 +41,13 @@ describe("SetupAssistant", () => {
         return new HttpResponse("Not found", { status: 404 });
       })
     );
+    mockServer.use(
+      http.get(defaultEnrollmentProfileUrl, () => {
+        return HttpResponse.json({
+          enrollment_profile: { is_mandatory: true },
+        });
+      })
+    );
     const render = createCustomRenderer({
       withBackendMock: true,
     });
